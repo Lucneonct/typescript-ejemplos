@@ -24,7 +24,11 @@ const MY_CONSTANTS = {
 }
 
 export enum ETitle {
-  DESARROLLADOR = "dev",
+  DESARROLLADOR = "develop",
   PENSIONADO = "pen",
   MARKETING = "mar"
+}
+
+export enum EModuleName {
+  RUTINA = "ANRU"
 }

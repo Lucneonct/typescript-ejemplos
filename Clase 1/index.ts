@@ -1,6 +1,5 @@
-import { esMayorDeEdad } from './functions';
+import { esMayorDeEdad, getUsuario } from './functions';
 import { ETitle, IUsuario, IVerifarmaWorker, TTitle } from './types';
-import { getUsuario } from './variables.js';
 
 class Usuario {
   nombre: string;
@@ -19,7 +18,7 @@ let nombre: string;
 let edad: number;
 let esDesarrollador: boolean;
 let lenguajes: string[];
-let usuario: IUsuario;
+export let usuario: IUsuario;
 
 let verifarmaWorker: IVerifarmaWorker = {
   edad: 30,
@@ -52,6 +51,8 @@ if(esMayorDeEdad(usuario)) {
 async function main() {
   const usuario = await getUsuario()
 
-  usuario.nombre = 15;
-  console.log(usuario.pais);
+  if(!usuario) return;
+
+  usuario.nombre = "Test";
+  console.log(usuario.esProgramador);
 }
