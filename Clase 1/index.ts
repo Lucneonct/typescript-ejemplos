@@ -1,7 +1,7 @@
 import { esMayorDeEdad, getUsuario } from './functions';
 import { ETitle, IUsuario, IVerifarmaWorker, TTitle } from './types';
 
-class Usuario {
+export class Usuario {
   nombre: string;
   edad: number;
   esProgramador: boolean;

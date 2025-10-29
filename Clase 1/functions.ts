@@ -6,7 +6,7 @@ export function esMayorDeEdad(usuario: IUsuario) {
 }
 
 export async function getUsuario(): Promise<IUsuario | false> {
-  const user = await axios.get<IUsuario>('https://api.example.com/usuario');
+  const user = await axios.get('https://api.example.com/usuario');
 
   if(user.status !== 200) {
     return false

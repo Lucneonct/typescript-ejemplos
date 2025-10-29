@@ -19,6 +19,7 @@ class User {
   // { nombre: "Alberto" }
   static updateName(currentUser: IUsuario, updatedUser: Pick<IUsuario, "nombre">) {
     currentUser = { ...currentUser, ...updatedUser }
+    return currentUser;
   }
 
   static update(currentUser: IUsuario, updatedUser: Partial<IUsuario>) {}
@@ -52,18 +53,52 @@ export const batchItemStatuses = {
   PENDING: {
     code: "PEN",
     name: "Pending"
-  },
+  } as const,
   UNDER_CONSTRUCTION: {
     code: "UCO",
     name: "Under Construction"
-  },
+  } as const,
   APPROVED: {
     code: "APP",
     name: "Approved"
-  },
+  } as const,
+  REJECTED: {
+    code: "RJT",
+    name: "Rejected"
+  } as const,
 } satisfies IStatuses
 
-batchItemStatuses.UNDER_CONSTRUCTION;
+type TBatchItemStatuses = typeof batchItemStatuses;
+export type TBatchItemStatusCodes = TBatchItemStatuses[keyof TBatchItemStatuses]['code'];
+
+
+export const medicineStatuses = {
+  EDITED: {
+    code: "EDT",
+    name: "Edited"
+  } as const,
+  UNDER_CONSTRUCTION: {
+    code: "UCO",
+    name: "Under Construction"
+  } as const,
+  VALID: {
+    code: "VAL",
+    name: "Valid"
+  } as const,
+} satisfies IStatuses
+
+type TMedicineStatuses = typeof medicineStatuses;
+export type TMedicineStatusCodes = TMedicineStatuses[keyof TMedicineStatuses]['code'];
+
+
+type GetStatusesCodes<T extends IStatuses = typeof medicineStatuses> = T[keyof T]["code"];
+
+type TMedicineStatusCodesWithGeneric = GetStatusesCodes<typeof medicineStatuses>;
+type TBatchItemStatusCodesWithGeneric = GetStatusesCodes<typeof batchItemStatuses>;
+type TRandomStatusCode = GetStatusesCodes;
+
+
+batchItemStatuses.UNDER_CONSTRUCTION.code;
 
 type TCoords = [x: number, y: number];
 const coords: TCoords = [1.123123, -5.123123];
