@@ -1,6 +1,7 @@
 import { getUsuario } from "../Clase 1/functions";
 import { IUsuario } from "../Clase 1/types";
 import { usuario } from "../Clase 1";
+import { OnlyRequired } from "../Clase 4";
 
 const user = await getUsuario();
 
@@ -31,21 +32,21 @@ class User {
    * @param currentUser User to be modified
    * @param updatedUser New user data
    */
-  static updateObservactions(currentUser: IUsuario, updatedUser: Pick<Required<IUsuario>, "observaciones"> & Partial<IUsuario>) {}
+  static updateObservactions(currentUser: IUsuario, updatedUser: OnlyRequired<IUsuario, "observaciones" | "nombre" | "edad">) {}
 }
 
 
 User.updateName(usuario, { nombre: "Alberto" })
 User.update(usuario, { nombre: "Alberto" })
 User.updateAll(usuario, { nombre: "Alberto", edad: 30, esProgramador: false, observaciones: "" })
-User.updateObservactions(usuario, { observaciones: "Todo bien!", nombre: "Alberto" })
+User.updateObservactions(usuario, { observaciones: "Todo bien!", nombre: "Alberto", edad: 35 })
 
 interface IStatusItem {
   code: string,
   name: string
 }
 
-interface IStatuses {
+export interface IStatuses {
   [key: string]: IStatusItem
 }
 
